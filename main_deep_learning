@@ -1,0 +1,23 @@
+from src.data_processing import load_and_preprocess_data
+from src.train_model import train_model
+from src.predict_clv import load_trained_model, prepare_input_data, predict_clv
+
+X_train, X_test, y_train, y_test, scaler = load_and_preprocess_data('data/online_sales_dataset.csv')
+
+model, history = train_model(X_train, y_train, X_test, y_test)
+
+input_dim = X_train.shape[1]
+model = load_trained_model(input_dim, weights_path='saved_model_weights.h5')
+
+# Prepare new customer data for prediction
+new_customer_data = {
+    'Recency': [10],
+    'CustomerAge': [365],
+    'Frequency': [5],
+    'Monetary': [500.0]
+}
+
+scaled_data = prepare_input_data(new_customer_data, scaler)
+predicted_clv = predict_clv(model, scaled_data)
+
+print(f"Predicted CLV for new customer: {predicted_clv:.2f}")
