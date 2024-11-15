@@ -1,0 +1,56 @@
+import pandas as pd
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.cluster import KMeans
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+
+# Load the dataset
+file_path = '/data/online_sales_dataset.csv'
+data = pd.read_csv(file_path)
+
+# Data Preprocessing
+# Convert categorical columns to numerical values
+label_encoder = LabelEncoder()
+data['Category'] = label_encoder.fit_transform(data['Category'])
+data['OrderPriority'] = label_encoder.fit_transform(data['OrderPriority'])
+data['SalesChannel'] = label_encoder.fit_transform(data['SalesChannel'])
+data['ReturnStatus'] = data['ReturnStatus'].apply(lambda x: 1 if x == 'Returned' else 0)  # Binary encoding for ReturnStatus
+
+# Calculate TotalSpent if not already present
+data['TotalSpent'] = data['Quantity'] * data['UnitPrice']
+
+# Aggregate data by region
+region_data = data.groupby('Country').agg({
+    'TotalSpent': 'sum',              # Total spending per region
+    'ReturnStatus': 'mean',            # Average return rate per region
+    'Quantity': 'sum',                 # Total quantity sold per region
+    'Discount': 'mean',                # Average discount usage per region
+    'Category': lambda x: x.mode()[0], # Most common product category per region
+}).reset_index()
+
+# Standardize the features
+features = ['TotalSpent', 'ReturnStatus', 'Quantity', 'Discount', 'Category']
+scaler = StandardScaler()
+region_data_scaled = scaler.fit_transform(region_data[features])
+
+# Apply K-Means Clustering
+kmeans = KMeans(n_clusters=3, random_state=42)  # Experiment with different numbers of clusters
+region_data['Cluster'] = kmeans.fit_predict(region_data_scaled)
+
+# Dimensionality Reduction for visualization
+pca = PCA(n_components=2)
+reduced_data = pca.fit_transform(region_data_scaled)
+region_data['PCA1'] = reduced_data[:, 0]
+region_data['PCA2'] = reduced_data[:, 1]
+
+# Plot the clusters
+plt.figure(figsize=(10, 6))
+plt.scatter(region_data['PCA1'], region_data['PCA2'], c=region_data['Cluster'], cmap='viridis')
+plt.colorbar(label='Cluster')
+plt.xlabel('PCA Component 1')
+plt.ylabel('PCA Component 2')
+plt.title('Regional Shopping Behavior Clusters')
+plt.show()
+
+# Display clustered data
+print("Shopping Behavior by Region:\n", region_data[['Country', 'TotalSpent', 'ReturnStatus', 'Quantity', 'Discount', 'Category', 'Cluster']])
