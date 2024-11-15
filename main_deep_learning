@@ -21,3 +21,9 @@ scaled_data = prepare_input_data(new_customer_data, scaler)
 predicted_clv = predict_clv(model, scaled_data)
 
 print(f"Predicted CLV for new customer: {predicted_clv:.2f}")
+
+from src.eda_visualizations import perform_eda
+
+# Perform EDA
+file_path = 'data/online_sales_dataset.csv'
+perform_eda(file_path)
