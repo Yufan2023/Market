@@ -79,3 +79,10 @@ python Regional Shopping Behavior.py
  - Predictions of CLV based on Recency, Frequency, and Monetary features.
  - Clustering regions based on total spending, return rates, and product preferences.
  - PCA-based visualization of regional clusters.
+
+## Dependencies
+- ```pandas```
+- ```matplotlib```
+- ```seaborn```
+- ```scikit-learn```
+- ```tensorflow```
