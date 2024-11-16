@@ -22,8 +22,6 @@ This repository contains a comprehensive project for customer analytics, regiona
 ---
 
 
----
-
 ## Dataset
 
 The dataset (`online_sales_dataset.csv`) contains the following features:
@@ -76,9 +74,8 @@ python Regional Shopping Behavior.py
 ```
 
 ## Visualizations
-Customer Lifetime Value (CLV)
+
  - Feature correlations for regression and deep learning models.
  - Predictions of CLV based on Recency, Frequency, and Monetary features.
-Regional Shopping Behavior
  - Clustering regions based on total spending, return rates, and product preferences.
  - PCA-based visualization of regional clusters.
