@@ -21,5 +21,50 @@ This repository contains a comprehensive project for customer analytics, regiona
 
 ---
 
-## Repository Structure
 
+---
+
+## Dataset
+
+The dataset (`online_sales_dataset.csv`) contains the following features:
+- **CustomerID**: Unique identifier for each customer.
+- **InvoiceNo**: Unique identifier for each invoice.
+- **InvoiceDate**: Date of the invoice.
+- **Quantity**: Quantity of products purchased.
+- **UnitPrice**: Price per unit.
+- **Discount**: Discount applied to the purchase.
+- **Category**: Product category.
+- **SalesChannel**: Sales channel type (e.g., online or offline).
+- **Country**: Customer's region or country.
+- **ReturnStatus**: Indicates if a product was returned.
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.8+
+- Install dependencies:
+  ```bash
+  pip install -r requirements.txt
+  ```
+## How to Use
+
+### 1. Run EDA
+Analyze the dataset and generate visualizations:
+```bash
+python src/eda_visualizations.py
+```
+
+### 2. Run Regression Model for CLV Prediction
+Train and predict CLV using the regression-based approach:
+```bash
+python main_for_regression.py
+```
+
+### 3. Run Deep Learning Model for CLV Prediction
+Train and predict CLV using the deep learning pipeline:
+```bash
+python main_deep_learning.py
+```
