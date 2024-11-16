@@ -68,3 +68,17 @@ Train and predict CLV using the deep learning pipeline:
 ```bash
 python main_deep_learning.py
 ```
+
+### 4. Analyze Regional Shopping Behavior
+Cluster and visualize shopping behavior across regions:
+```bash
+python Regional Shopping Behavior.py
+```
+
+## Visualizations
+Customer Lifetime Value (CLV)
+Feature correlations for regression and deep learning models.
+Predictions of CLV based on Recency, Frequency, and Monetary features.
+Regional Shopping Behavior
+Clustering regions based on total spending, return rates, and product preferences.
+PCA-based visualization of regional clusters.
