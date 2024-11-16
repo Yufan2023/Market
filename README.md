@@ -77,8 +77,8 @@ python Regional Shopping Behavior.py
 
 ## Visualizations
 Customer Lifetime Value (CLV)
-Feature correlations for regression and deep learning models.
-Predictions of CLV based on Recency, Frequency, and Monetary features.
+ - Feature correlations for regression and deep learning models.
+ - Predictions of CLV based on Recency, Frequency, and Monetary features.
 Regional Shopping Behavior
-Clustering regions based on total spending, return rates, and product preferences.
-PCA-based visualization of regional clusters.
+ - Clustering regions based on total spending, return rates, and product preferences.
+ - PCA-based visualization of regional clusters.
